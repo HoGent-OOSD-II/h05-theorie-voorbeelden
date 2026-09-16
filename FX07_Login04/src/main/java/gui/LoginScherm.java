@@ -1,0 +1,81 @@
+package gui;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+
+public class LoginScherm extends GridPane {
+	private Label lblMessage;
+	private TextField txfUser;
+
+	public LoginScherm() {
+		this.setAlignment(Pos.BOTTOM_LEFT);
+		this.setHgap(10);
+		this.setVgap(10);
+
+		this.setPadding(new Insets(25, 25, 25, 25));
+
+		Label lblTitle = new Label("Welcome");
+		lblTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+		this.add(lblTitle, 0, 0, 2, 1);
+
+		Label lblUserName = new Label("User Name:");
+		this.add(lblUserName, 0, 1);
+
+		txfUser = new TextField();
+		this.add(txfUser, 1, 1);
+
+		Label lblPassword = new Label("Password:");
+		this.add(lblPassword, 0, 2);
+
+		PasswordField pwfPassword = new PasswordField();
+		this.add(pwfPassword, 1, 2);
+
+		Tooltip tooltip = new Tooltip();
+		tooltip.setText("Your password must be\n" + "at least 8 characters in length\n");
+		pwfPassword.setTooltip(tooltip);
+
+		Button btnSignIn = new Button("Sign in");
+
+		setHalignment(btnSignIn, HPos.LEFT);
+		this.add(btnSignIn, 0, 4);
+
+		Button btnCancel = new Button("Cancel");
+
+		setHalignment(btnCancel, HPos.RIGHT);
+		this.add(btnCancel, 1, 4);
+
+		Hyperlink linkForgot = new Hyperlink("Forgot password");
+		this.add(linkForgot, 0, 5, 2, 1);
+
+		lblMessage = new Label();
+		this.add(lblMessage, 1, 6);
+
+		btnSignIn.setOnAction(this::buttonPushed);
+		btnCancel.setOnAction(evt -> lblMessage.setText("Cancel button pressed"));
+		linkForgot.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent evt) {
+				lblMessage.setText("Hyperlink clicked");
+			}
+		});
+
+	}
+
+	// Klasse LoginScherm
+	private void buttonPushed(ActionEvent event) {
+		WelkomScherm vs = new WelkomScherm(txfUser.getText(), this); // <1>
+		this.getScene().setRoot(vs);
+	}
+}

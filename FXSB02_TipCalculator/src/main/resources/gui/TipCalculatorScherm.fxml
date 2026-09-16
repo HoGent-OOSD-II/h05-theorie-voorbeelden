@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane
+        xmlns="http://javafx.com/javafx/21"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="gui.TipCalculatorController"
+        hgap="10"
+        prefWidth="600"
+        prefHeight="400">
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="100.0"/>
+        <RowConstraints minHeight="10.0" prefHeight="100.0"/>
+        <RowConstraints minHeight="10.0" prefHeight="100.0"/>
+        <RowConstraints minHeight="10.0" prefHeight="100.0"/>
+        <RowConstraints minHeight="10.0" prefHeight="100.0"/>
+    </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0"/>
+        <ColumnConstraints maxWidth="462.0" minWidth="10.0" prefWidth="400.0"/>
+    </columnConstraints>
+    <children>
+        <Label text="Amount"/>
+        <Label fx:id="lblTipPercentage" text="15%" GridPane.rowIndex="1"/>
+        <Label text="Tip" GridPane.rowIndex="2"/>
+        <Label text="Total" GridPane.rowIndex="3"/>
+        <TextField fx:id="txfAmount" GridPane.columnIndex="1"/>
+        <TextField fx:id="txfTip" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <TextField fx:id="txfTotal" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        <Slider fx:id="sldTipPercentage" blockIncrement="5.0" majorTickUnit="5.0" max="30.0" minorTickCount="4"
+                showTickLabels="true" showTickMarks="true" snapToTicks="true" value="15.0" GridPane.columnIndex="1"
+                GridPane.rowIndex="1"/>
+        <Button fx:id="btnCalculate" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                onAction="#btnCalculateOnAction" text="Calculate" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+    </children>
+    <opaqueInsets>
+        <Insets/>
+    </opaqueInsets>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+</GridPane>
